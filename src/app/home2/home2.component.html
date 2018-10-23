@@ -1,0 +1,81 @@
+<div class="container">
+<br>
+    
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary">
+          <a routerLink='' type="radio"  > Movies</a>
+        </label>
+        <label class="btn btn-secondary active">
+          <a routerLink='/show/' type="radio" checked >Shows</a>
+        </label>
+    </div>
+        
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Search Shows</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form>
+        <div class="row">
+          <div class="col-9">
+            <input type="text" class="form-control" placeholder="Search Shows"
+              name="show"
+              [(ngModel)]="show">
+          </div>
+          <div class="col-3">
+            <button class="btn-block btn-danger form-control" (click)="searchShows()">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div  class="col-sm-4" *ngFor="let show of search_result; let i = index">
+      <div *ngIf="i < 20">
+        <div class="card mt-3 mb-3">
+          <div class="card-header text-center">
+            {{ show.first_air_date | date:'mediumDate':'yyyy' }}
+          </div>
+          <div class="card-body">
+            <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ show.poster_path }}" alt="{{ show.original_title }}" style="height: 460px">
+            <p class="text-center">{{ show.original_title }}</p>
+            <a routerLink="/show/{{ show.id }}" href="#" class="btn btn-danger" role="button">Show Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+ 
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Popular Shows</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div  class="col-sm-4" *ngFor="let popular of popular_shows; let i = index">
+      <div *ngIf="i < 10">
+        <div class="card mt-3 mb-3">
+          <div class="card-header text-center">
+            {{ popular.first_air_date | date:'mediumDate' }}
+          </div>
+          <div class="card-body">
+            <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ popular.poster_path }}" alt="{{ popular.original_title }}" style="height: 460px">
+            <p class="text-center">{{ popular.original_title }}</p>
+            <a routerLink="/show/{{ popular.id }}" href="#" class="btn btn-block btn-danger">Show Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
